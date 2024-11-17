@@ -31,7 +31,7 @@ export default async function IndexPage() {
                 </div>
                 <Container className="pb-24">
                     <h1 className="text-4xl font-bold mb-8">Over mij</h1>
-                    <p className=" w-96">
+                    <p className=" max-w-96">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
                         mollitia, molestiae quas vel sint commodi repudiandae consequuntur
                         voluptatum laborum numquam blanditiis harum quisquam eius sed odit
@@ -61,7 +61,7 @@ export default async function IndexPage() {
             </main>
             <Container>
                 <h1 className="text-4xl font-bold mb-8">Producten</h1>
-                <p className=" w-96">
+                <p className=" max-w-96">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
                     mollitia, molestiae quas vel sint commodi repudiandae consequuntur
                     voluptatum laborum numquam blanditiis harum quisquam eius sed odit
