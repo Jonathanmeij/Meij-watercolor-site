@@ -6,7 +6,7 @@ export default function Navbar({ className }: { className?: string }) {
         <nav className={`w-screen text-white ${className}`}>
             <Container className="flex py-6 items-center justify-between w-full">
                 <h1 className="text-2xl font-semibold">Meij watercolor</h1>
-                <div className="flex gap-4 font-medium  tracking-wide">
+                <div className=" gap-4 font-medium hidden md:flex tracking-wide">
                     <Link href="/about">Aanbod</Link>
                     <Link href="/posts">Tekening in opdracht</Link>
                     <Link href="/contact">Over mij</Link>

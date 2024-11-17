@@ -16,7 +16,6 @@ body {
 /* mask is saved in public folder of this nextjs app */
 .header-mask {
     mask-image: url("/images/ripped-image.svg");
-    mask-size: contain;
-    mask-position: center;
-    width: 100vw;
+    mask-size: cover;
+    mask-position: bottom;
 }
