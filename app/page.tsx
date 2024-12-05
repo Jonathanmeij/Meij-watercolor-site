@@ -13,7 +13,7 @@ export default async function IndexPage() {
                         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 space-y-2 -translate-y-1/2
  z-10"
                     >
-                        <h1 className="text-4xl font-bold text-white max-w-md text-center text-balance ">
+                        <h1 className="text-4xl font-bold text-white max-w-md text-center ">
                             Huisportretten en uitgeprinte tekeningen
                         </h1>
                         <p className="text-white text-center text-lg">
@@ -29,7 +29,7 @@ export default async function IndexPage() {
                         <div className="absolute top-0 bg-gradient-to-b to-black/50  via-30% via-black/50 from-black/80 h-full w-full"></div>
                     </div>
                 </div>
-                <Container className="pb-28 pt-10" size={"sm"}>
+                <Container className="pb-28 pt-8 sm:pt-10" size={"sm"}>
                     <h1 className="text-4xl font-bold mb-8">Over mij</h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
