@@ -6,7 +6,7 @@ import Navbar from "./components/navbar";
 export default async function IndexPage() {
     return (
         <div>
-            <main className="paper-bg min-h-screen h-full header-mask">
+            <main className="paper-bg  h-full header-mask">
                 <div className="relative">
                     <Navbar className="absolute top-0 z-50" />
                     <div
@@ -20,7 +20,7 @@ export default async function IndexPage() {
                             Waterverf en digitale illustraties door Jaap
                         </p>
                     </div>
-                    <div className="header-mask">
+                    <div className="header-mask overflow-hidden">
                         <img
                             alt="Watercolor painting of a bridge"
                             src={"/images/headerPicture.png"}
@@ -29,9 +29,9 @@ export default async function IndexPage() {
                         <div className="absolute top-0 bg-gradient-to-b to-black/50  via-30% via-black/50 from-black/80 h-full w-full"></div>
                     </div>
                 </div>
-                <Container className="pb-24">
+                <Container className="pb-28 pt-10" size={"sm"}>
                     <h1 className="text-4xl font-bold mb-8">Over mij</h1>
-                    <p className=" max-w-96">
+                    <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
                         mollitia, molestiae quas vel sint commodi repudiandae consequuntur
                         voluptatum laborum numquam blanditiis harum quisquam eius sed odit
@@ -61,7 +61,7 @@ export default async function IndexPage() {
             </main>
             <Container>
                 <h1 className="text-4xl font-bold mb-8">Producten</h1>
-                <p className=" max-w-96">
+                <p className=" ">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
                     mollitia, molestiae quas vel sint commodi repudiandae consequuntur
                     voluptatum laborum numquam blanditiis harum quisquam eius sed odit
