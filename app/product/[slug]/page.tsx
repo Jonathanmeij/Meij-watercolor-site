@@ -5,6 +5,8 @@ import { client } from "@/sanity/client";
 import Link from "next/link";
 import { Container } from "@/app/components/container";
 import Navbar from "@/app/components/navbar";
+import ProcesSection from "@/app/components/ProcesSection";
+import Image from "next/image";
 
 const POST_QUERY = `*[
     _type == "product"
@@ -23,36 +25,43 @@ export default async function PostPage({
 }: {
     params: Promise<{ slug: string }>;
 }) {
-    const post = await client.fetch<SanityDocument>(POST_QUERY, params, options);
+    const post = await client.fetch<SanityDocument>(POST_QUERY, await params, options);
     const postImageUrl = post.image
-        ? urlFor(post.image)?.width(550).height(310).url()
+        ? urlFor(post.image)?.width(550).height(550).url()
         : null;
 
     return (
-        <div>
-            <Navbar className="text-neutral-900" />
+        <div className=" min-h-screen">
             <main>
-                <Container size={"sm"} className="">
-                    <Link href="/" className="hover:underline">
-                        ← Back to posts
-                    </Link>
-                    {postImageUrl && (
-                        <img
-                            src={postImageUrl}
-                            alt={post.title}
-                            className="aspect-video rounded-xl"
-                            width="550"
-                            height="310"
-                        />
-                    )}
-                    <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
-                    <div className="prose">
-                        <p>
-                            Published: {new Date(post.publishedAt).toLocaleDateString()}
-                        </p>
-                        {Array.isArray(post.body) && <PortableText value={post.body} />}
+                <Navbar className="!text-neutral-900 " />
+                <Container size={"sm"} className="pt-0">
+                    <div className="py-6">
+                        <Link href="/" className="hover:underline">
+                            ← Terug naar overzicht
+                        </Link>
+                    </div>
+
+                    <div className="flex gap-6 items-center md:flex-row flex-col">
+                        <div className="w-full">
+                            <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+                            <div className="prose">
+                                {Array.isArray(post.description) && (
+                                    <PortableText value={post.description} />
+                                )}
+                            </div>
+                        </div>
+                        {postImageUrl && (
+                            <Image
+                                src={postImageUrl}
+                                alt={post.title}
+                                className=" rounded-xl"
+                                width="500"
+                                height="500"
+                            />
+                        )}
                     </div>
                 </Container>
+                <ProcesSection />
             </main>
         </div>
     );

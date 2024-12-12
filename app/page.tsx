@@ -56,7 +56,10 @@ function Header() {
 
 function WelcomeSection() {
     return (
-        <Container className=" py-20 flex gap-8 items-center" size={"sm"}>
+        <Container
+            className=" py-10 md:py-20 flex gap-8 items-center md:flex-row flex-col"
+            size={"sm"}
+        >
             <div>
                 <h1 className="text-4xl font-bold mb-8">Hoi ik ben Jaap</h1>
                 <p>
@@ -121,7 +124,7 @@ function ProductCard({ document }: { document: SanityDocument }) {
                 alt={document.title}
                 width={550}
                 height={500}
-                className="w-full object-cover"
+                className="w-full object-cover rounded"
             />
             <h1 className="text-xl font-bold mt-2 group-hover:underline">
                 {document.title}
