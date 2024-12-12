@@ -8,20 +8,19 @@
 }
 
 body {
-    color: var(--foreground);
-    background: var(--background);
-    font-family: Arial, Helvetica, sans-serif;
+    @apply bg-stone-50/50;
 }
 
 /* mask is saved in public folder of this nextjs app */
 .header-mask {
-    mask-image: url("/images/ripped-image.svg");
-    mask-size: cover;
-    mask-position: bottom;
+    -webkit-mask:
+        linear-gradient(white, white) no-repeat top/100% calc(100% - 50px),
+        url("/images/ripped-image.svg")
+            /* url("https://www.isorauschen.at/ripped-paper-mirrored.svg")*/ bottom/auto
+            300px repeat-x;
 }
 
 .paper-bg {
-    /* add exposure */
     position: relative;
 }
 
