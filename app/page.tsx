@@ -91,7 +91,7 @@ async function ProductSection() {
     return (
         <Container size="sm" className=" sm:mt-0">
             <h1 className="text-4xl   font-bold mb-8">Producten</h1>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {products.map((product) => (
                     <ProductCard key={product.title} document={product} />
                 ))}
@@ -109,20 +109,24 @@ function ProductCard({ document }: { document: SanityDocument }) {
         ? urlFor(document.image)?.width(550).height(310).url()
         : "/images/placeholder.svg";
 
+    console.log(document);
+
     return (
         <a
-            href={"/" + document.slug.current}
+            href={"/product/" + document.slug.current}
             className="bg-white shadow-lg rounded-lg p-4 group hover:shadow-xl transition-all"
         >
-            <img
-                src={postImageUrl}
+            <Image
+                src={postImageUrl || "/images/placeholder.svg"}
                 alt={document.title}
-                className="w-full h-48 object-cover"
+                width={550}
+                height={500}
+                className="w-full object-cover"
             />
             <h1 className="text-xl font-bold mt-2 group-hover:underline">
                 {document.title}
             </h1>
-            {/* <p>{document.description[0].children[0].text}</p> */}
+            <p>{document.korteBeschrhijving}</p>
         </a>
     );
 }
