@@ -80,7 +80,7 @@ function WelcomeSection() {
             </div>
             <Image
                 src={"/images/profiel.png"}
-                alt="Jaap"
+                alt="Jaap van der Meij"
                 width={300}
                 height={300}
                 className="rounded-2xl shadow-lg"
