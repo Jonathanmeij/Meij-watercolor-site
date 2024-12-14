@@ -4,7 +4,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
 import { Container } from "@/app/components/container";
 import Navbar from "@/app/components/navbar";
-import ProcesSection from "@/app/components/ProcesSection";
+import ContactSection from "@/app/components/ProcesSection";
 import Image from "next/image";
 import { Contact } from "@/app/components/Contact";
 import Link from "next/link";
@@ -113,7 +113,7 @@ export default async function PostPage({
                         </div>
                     </div>
                 </Container>
-                <ProcesSection title={post.title} />
+                <ContactSection title={post.title} />
                 {images.length > 2 && (
                     <Container size={"sm"}>
                         <h2 className="text-3xl font-bold mb-8">Meer {post.title}</h2>
