@@ -37,7 +37,7 @@ export default async function PostPage({
         : [];
 
     return (
-        <div className=" min-h-screen">
+        <div className=" min-h-screen bg-amber-50/50">
             <main>
                 <Navbar className="!text-green-950 " />
                 <Container size={"sm"} className="pt-0 space-y-6">
@@ -66,29 +66,54 @@ export default async function PostPage({
                             />
                         )}
                     </div>
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div className="grid grid-cols-1 items-center gap-6  sm:grid-cols-2">
                         {images[0] && (
                             <Image
                                 src={images[0]}
                                 alt={post.title}
-                                className="rounded-xl "
+                                className="rounded-xl order-last sm:order-first"
                                 width="500"
                                 height="500"
                             />
                         )}
-                        {images[1] && (
-                            <Image
-                                src={images[1]}
-                                alt={post.title}
-                                className="rounded-xl "
-                                width="500"
-                                height="500"
-                            />
-                        )}
+
+                        <div className="space-y-6">
+                            <h2 className="text-3xl  font-bold">
+                                {post.title} laten maken?
+                            </h2>
+
+                            <ol className="list-decimal pl-4">
+                                <li>
+                                    Neem contact met me op via jaapvandermeij@gmail.com of
+                                    via het contact veld.
+                                </li>
+                                <li>
+                                    Overleggen of het een handgemaakte of digitale
+                                    tekening wordt
+                                </li>
+                                <li>
+                                    Vraag je een goede liefst meerdere foto’s naar mee te
+                                    mailen
+                                </li>
+                                <li>
+                                    N.a.v de foto’s en de complexiteit van de tekening
+                                    bepaal ik de prijs deze ligt tussen de 90 en 130€
+                                </li>
+                                <li>
+                                    Bij een digitale versie neem ik halverwege contact met
+                                    je op en kun je veranderingen aangeven
+                                </li>
+                                <li>
+                                    Ik probeer de tekening binnen 3 weken af te hebben,
+                                    mocht er iets meer haast bij zitten dan kan je dat
+                                    altijd even aangeven, meestal kan ik het dan wel iets
+                                    naar voren halen
+                                </li>
+                            </ol>
+                        </div>
                     </div>
                 </Container>
                 <ProcesSection title={post.title} />
-                <Contact />
                 {images.length > 2 && (
                     <Container size={"sm"}>
                         <h2 className="text-3xl font-bold mb-8">Meer {post.title}</h2>

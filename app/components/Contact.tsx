@@ -1,7 +1,5 @@
 "use client";
 
-import { Container } from "./container";
-
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -44,7 +42,6 @@ export function Contact() {
         },
     });
 
-    // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
         setResult("sending");
 
@@ -72,81 +69,74 @@ export function Contact() {
     }
 
     return (
-        <div>
-            <Container size="xxxs" className="py-10 ">
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        <h2 className="text-3xl  font-bold mb-1">
-                            Neem contact met me op!
-                        </h2>
-                        <p>
-                            Heb je een vraag, wil je een tekening laten maken of wil je
-                            gewoon even hallo zeggen? Vul dan het formulier in en ik neem
-                            zo snel mogelijk contact met je op!
-                        </p>
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <h2 className="text-3xl  font-bold mb-1">Neem contact met me op!</h2>
+                <p className="text-green-50">
+                    Heb je een vraag, wil je een tekening laten maken of wil je gewoon
+                    even hallo zeggen? Vul dan het formulier in en ik neem zo snel
+                    mogelijk contact met je op!
+                </p>
 
-                        <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Naam" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Naam" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Email</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Email" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Email" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
-                        <FormField
-                            control={form.control}
-                            name="message"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Bericht</FormLabel>
-                                    <FormControl>
-                                        <Textarea placeholder="Bericht" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Bericht</FormLabel>
+                            <FormControl>
+                                <Textarea placeholder="Bericht" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
-                        {result === "success" && (
-                            <p className="text-white bg-green-700 py-2 px-3 rounded-md">
-                                Bedankt voor je bericht!
-                            </p>
-                        )}
+                {result === "success" && (
+                    <p className="text-white bg-green-700 py-2 px-3 rounded-md">
+                        Bedankt voor je bericht!
+                    </p>
+                )}
 
-                        {result === "error" && (
-                            <p className="text-red-500">
-                                Er is iets misgegaan. Probeer het later opnieuw.
-                            </p>
-                        )}
+                {result === "error" && (
+                    <p className="text-red-500">
+                        Er is iets misgegaan. Probeer het later opnieuw.
+                    </p>
+                )}
 
-                        <Button type="submit" disabled={result === "sending"}>
-                            {result === "sending" && <Spinner />}
-                            {result === "sending" ? "Laden..." : "Verstuur"}
-                        </Button>
-                    </form>
-                </Form>
-                {/* <span>{result}</span> */}
-            </Container>
-        </div>
+                <Button type="submit" disabled={result === "sending"}>
+                    {result === "sending" && <Spinner />}
+                    {result === "sending" ? "Laden..." : "Verstuur"}
+                </Button>
+            </form>
+        </Form>
     );
 }
