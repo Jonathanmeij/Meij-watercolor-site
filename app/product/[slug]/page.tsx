@@ -6,7 +6,6 @@ import { Container } from "@/app/components/container";
 import Navbar from "@/app/components/navbar";
 import ContactSection from "@/app/components/ContactSection";
 import Image from "next/image";
-import { Contact } from "@/app/components/Contact";
 import Link from "next/link";
 
 const POST_QUERY = `*[
