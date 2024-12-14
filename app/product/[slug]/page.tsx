@@ -4,7 +4,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
 import { Container } from "@/app/components/container";
 import Navbar from "@/app/components/navbar";
-import ContactSection from "@/app/components/ProcesSection";
+import ContactSection from "@/app/components/ContactSection";
 import Image from "next/image";
 import { Contact } from "@/app/components/Contact";
 import Link from "next/link";
