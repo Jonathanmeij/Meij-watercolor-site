@@ -1,14 +1,22 @@
 import { Container } from "./container";
 import Image from "next/image";
 
-export default function ProcesSection() {
+export default function ProcesSection({ title }: { title: string }) {
     return (
-        <section className="bg-green-950 text-neutral-50 py-10 md:py-20">
+        <section className="bg-green-950 text-neutral-50 py-10 md:py-16">
             <Container size="sm" className="flex md:flex-row flex-col gap-6 items-center">
-                <div>
-                    <h2 className="text-3xl font-bold mb-4">Hoe gaan we te werk?</h2>
+                <div className="space-y-6">
+                    <h2 className="text-3xl  font-bold">{title} laten maken?</h2>
+
+                    <div className="space-y-2">
+                        <IconAndText>
+                            <MailIcon />
+                            <p>jaapvandermeij@gmail.com</p>
+                        </IconAndText>
+                    </div>
+
                     <ol className="list-decimal pl-4">
-                        <li>Neem contact met me op via WhatsApp of e-mail</li>
+                        <li>Neem contact met me op via jaapvandermeij@gmail.com</li>
                         <li>
                             Overleggen of het een handgemaakte of digitale tekening wordt
                         </li>
@@ -42,11 +50,25 @@ export default function ProcesSection() {
     );
 }
 
-// Hoe gaan we te werk 1 neem contact met me op via WhatsApp of e-mail 2 we
-//                 overleggen of het een handgemaakte of digitale tekening wordt 3k vraag je
-//                 een goede liefst meerdere foto’s naar mee te mailen. 4 n.a.v de foto’s en
-//                 de complexiteit van de tekening bepaal ik de prijs deze ligt tussen de 90
-//                 en 130€ 5 bij een digitale versie neem ik halverwege contact met je op en
-//                 kun je veranderingen aangeven 6 ik probeer de tekening binnen 3 weken af
-//                 te hebben, mocht er iets meer haast bij zitten dan kan je dat altijd even
-//                 aangeven, meestal kan ik het dan wel iets naar voren halen.
+function IconAndText({ children }: { children: React.ReactNode }) {
+    return <div className="flex gap-2 items-center">{children}</div>;
+}
+
+function MailIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="size-5 text-white"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+            />
+        </svg>
+    );
+}

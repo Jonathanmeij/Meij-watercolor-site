@@ -2,11 +2,11 @@ import { PortableText, type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
-import Link from "next/link";
 import { Container } from "@/app/components/container";
 import Navbar from "@/app/components/navbar";
 import ProcesSection from "@/app/components/ProcesSection";
 import Image from "next/image";
+import { Contact } from "@/app/components/Contact";
 
 const POST_QUERY = `*[
     _type == "product"
@@ -33,13 +33,13 @@ export default async function PostPage({
     return (
         <div className=" min-h-screen">
             <main>
-                <Navbar className="!text-neutral-900 " />
+                <Navbar className="!text-green-950 " />
                 <Container size={"sm"} className="pt-0">
-                    <div className="py-6">
+                    {/* <div className="py-6">
                         <Link href="/" className="hover:underline">
                             ← Terug naar overzicht
                         </Link>
-                    </div>
+                    </div> */}
 
                     <div className="flex gap-6 items-center md:flex-row flex-col">
                         <div className="w-full">
@@ -61,7 +61,8 @@ export default async function PostPage({
                         )}
                     </div>
                 </Container>
-                <ProcesSection />
+                <ProcesSection title="Huisportret" />
+                <Contact />
             </main>
         </div>
     );
