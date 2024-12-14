@@ -16,7 +16,10 @@ export default function ProcesSection({ title }: { title: string }) {
                     </div>
 
                     <ol className="list-decimal pl-4">
-                        <li>Neem contact met me op via jaapvandermeij@gmail.com</li>
+                        <li>
+                            Neem contact met me op via jaapvandermeij@gmail.com of via het
+                            contact veld.
+                        </li>
                         <li>
                             Overleggen of het een handgemaakte of digitale tekening wordt
                         </li>

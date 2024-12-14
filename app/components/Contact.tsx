@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import Spinner from "./Spinner";
 
 const formSchema = z.object({
     name: z
@@ -31,7 +33,7 @@ const formSchema = z.object({
 });
 
 export function Contact() {
-    // const [result, setResult] = useState("");
+    const [result, setResult] = useState("");
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -43,34 +45,31 @@ export function Contact() {
     });
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values);
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        setResult("sending");
+
+        const formData = new FormData();
+
+        formData.append("name", values.name);
+        formData.append("email", values.email);
+        formData.append("message", values.message);
+
+        formData.append("access_key", "9af4a666-a4cd-4165-a765-d1ee6e4e2220");
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData,
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            setResult("success");
+            form.reset();
+        } else {
+            setResult("error");
+        }
     }
-
-    // const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    //     event.preventDefault();
-    //     setResult("Sending....");
-    //     const formData = new FormData(event.currentTarget);
-
-    //     formData.append("access_key", "9af4a666-a4cd-4165-a765-d1ee6e4e2220");
-
-    //     const response = await fetch("https://api.web3forms.com/submit", {
-    //         method: "POST",
-    //         body: formData,
-    //     });
-
-    //     const data = await response.json();
-
-    //     if (data.success) {
-    //         setResult("Form Submitted Successfully");
-    //         event.currentTarget.reset();
-    //     } else {
-    //         console.log("Error", data);
-    //         setResult(data.message);
-    //     }
-    // };
 
     return (
         <div>
@@ -80,6 +79,11 @@ export function Contact() {
                         <h2 className="text-3xl  font-bold mb-1">
                             Neem contact met me op!
                         </h2>
+                        <p>
+                            Heb je een vraag, wil je een tekening laten maken of wil je
+                            gewoon even hallo zeggen? Vul dan het formulier in en ik neem
+                            zo snel mogelijk contact met je op!
+                        </p>
 
                         <FormField
                             control={form.control}
@@ -123,7 +127,22 @@ export function Contact() {
                             )}
                         />
 
-                        <Button type="submit">Submit Form</Button>
+                        {result === "success" && (
+                            <p className="text-white bg-green-700 py-2 px-3 rounded-md">
+                                Bedankt voor je bericht!
+                            </p>
+                        )}
+
+                        {result === "error" && (
+                            <p className="text-red-500">
+                                Er is iets misgegaan. Probeer het later opnieuw.
+                            </p>
+                        )}
+
+                        <Button type="submit" disabled={result === "sending"}>
+                            {result === "sending" && <Spinner />}
+                            {result === "sending" ? "Laden..." : "Verstuur"}
+                        </Button>
                     </form>
                 </Form>
                 {/* <span>{result}</span> */}
