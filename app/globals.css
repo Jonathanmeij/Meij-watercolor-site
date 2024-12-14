@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --background: #ffffff;
-    --foreground: #171717;
-}
-
 body {
     @apply bg-neutral-50/50 text-neutral-800;
 }
@@ -36,4 +31,11 @@ body {
     background-size: 350px 350px;
     filter: brightness(1.12);
     z-index: -1;
+}
+
+@layer base {
+  :root {
+        --radius:
+        0.5rem;
+    }
 }

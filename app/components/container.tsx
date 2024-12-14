@@ -7,6 +7,8 @@ const containerVariants = cva("w-full mx-auto", {
             default: " max-w-screen-2xl",
             sm: "max-w-screen-lg",
             xs: "max-w-screen-md",
+            xxs: "max-w-screen-sm",
+            xxxs: "max-w-lg",
         },
         padding: {
             default: "p-6",
