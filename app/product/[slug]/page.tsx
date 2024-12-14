@@ -112,7 +112,7 @@ export default async function PostPage({
                         </div>
                     </div>
                 </Container>
-                <ContactSection title={post.title} />
+                <ContactSection />
                 {images.length > 2 && (
                     <Container size={"sm"}>
                         <h2 className="text-3xl font-bold mb-8">Meer {post.title}</h2>

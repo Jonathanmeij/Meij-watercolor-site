@@ -2,7 +2,7 @@ import { Contact } from "./Contact";
 import { Container } from "./container";
 import Image from "next/image";
 
-export default function ContactSection({ title }: { title: string }) {
+export default function ContactSection() {
     return (
         <section className="bg-green-950 text-neutral-50 py-10 md:py-16">
             <Container size="sm" className="flex md:flex-row flex-col gap-6 items-center">
