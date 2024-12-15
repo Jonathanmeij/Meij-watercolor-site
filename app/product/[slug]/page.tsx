@@ -18,14 +18,12 @@ const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
     projectId && dataset ? imageUrlBuilder({ projectId, dataset }).image(source) : null;
 
-const options = { next: { revalidate: 30 } };
-
 export default async function PostPage({
     params,
 }: {
     params: Promise<{ slug: string }>;
 }) {
-    const post = await client.fetch<SanityDocument>(POST_QUERY, await params, options);
+    const post = await client.fetch<SanityDocument>(POST_QUERY, await params);
     const postImageUrl = post.image
         ? urlFor(post.image)?.width(550).height(550).url()
         : null;
