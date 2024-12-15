@@ -112,8 +112,6 @@ function ProductCard({ document }: { document: SanityDocument }) {
         ? urlFor(document.image)?.width(550).height(310).url()
         : "/images/placeholder.svg";
 
-    console.log(document);
-
     return (
         <a
             href={"/product/" + document.slug.current}
