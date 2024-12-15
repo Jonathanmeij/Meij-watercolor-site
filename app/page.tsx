@@ -17,13 +17,13 @@ const POSTS_QUERY = `*[
 
 export default async function IndexPage() {
     return (
-        <>
-            <div className="paper-bg header-mask">
+        <div className="bg-amber-50/[50%]">
+            <div className="paper-bg header-mask ">
                 <Header />
                 <WelcomeSection />
             </div>
             <ProductSection />
-        </>
+        </div>
     );
 }
 
