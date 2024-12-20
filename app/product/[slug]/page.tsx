@@ -117,16 +117,19 @@ export default async function PostPage({
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             {images
                                 .filter((_, i) => i > 1)
-                                .map((image, index) => (
-                                    <Image
-                                        key={index}
-                                        src={image}
-                                        alt={post.title}
-                                        className="rounded-xl"
-                                        width="500"
-                                        height="500"
-                                    />
-                                ))}
+                                .map(
+                                    (image, index) =>
+                                        image && (
+                                            <Image
+                                                key={index}
+                                                src={image}
+                                                alt={post.title}
+                                                className="rounded-xl"
+                                                width="500"
+                                                height="500"
+                                            />
+                                        )
+                                )}
                         </div>
                     </Container>
                 )}
