@@ -79,34 +79,24 @@ export default async function PostPage({
                                 {post.title} laten maken?
                             </h2>
 
-                            <ol className="list-decimal pl-4">
-                                <li>
-                                    Neem contact met me op via jaapvandermeij@gmail.com of
-                                    via het contact veld.
-                                </li>
-                                <li>
-                                    Overleggen of het een handgemaakte of digitale
-                                    tekening wordt
-                                </li>
-                                <li>
-                                    Vraag je een goede liefst meerdere foto’s naar mee te
-                                    mailen
-                                </li>
-                                <li>
-                                    N.a.v de foto’s en de complexiteit van de tekening
-                                    bepaal ik de prijs deze ligt tussen de 90 en 130€
-                                </li>
-                                <li>
-                                    Bij een digitale versie neem ik halverwege contact met
-                                    je op en kun je veranderingen aangeven
-                                </li>
-                                <li>
-                                    Ik probeer de tekening binnen 3 weken af te hebben,
-                                    mocht er iets meer haast bij zitten dan kan je dat
-                                    altijd even aangeven, meestal kan ik het dan wel iets
-                                    naar voren halen
-                                </li>
-                            </ol>
+                            {Array.isArray(post.stappenPlan) && (
+                                <PortableText
+                                    components={{
+                                        list: {
+                                            // Ex. 1: customizing common list types
+                                            bullet: ({ children }) => (
+                                                <ul className="mt-xl">{children}</ul>
+                                            ),
+                                            number: ({ children }) => (
+                                                <ol className="list-decimal list-inside space-y-1 ">
+                                                    {children}
+                                                </ol>
+                                            ),
+                                        },
+                                    }}
+                                    value={post.stappenPlan}
+                                />
+                            )}
                         </div>
                     </div>
                 </Container>

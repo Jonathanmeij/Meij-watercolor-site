@@ -3,6 +3,7 @@ import { Container } from "./container";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { DialogClose, DialogTitle } from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 const links = [
     { href: "/about", label: "Aanbod" },
@@ -17,7 +18,13 @@ export default function Navbar({ className }: { className?: string }) {
                 size="sm"
                 className="flex py-6 items-center justify-between w-full"
             >
-                <h1 className="text-2xl font-semibold">Meij watercolor</h1>
+                {/* <h1 className="text-2xl font-semibold">MeijLine</h1> */}
+                <Image
+                    src={"/images/logo.png"}
+                    width={150}
+                    height={150}
+                    alt="Meijline log"
+                />
                 <div className=" gap-4 font-medium hidden md:flex tracking-wide">
                     {links.map((link) => (
                         <Link key={link.href} href={link.href}>
