@@ -31,7 +31,7 @@ export default function Footer() {
                 </nav>
                 <div className="flex justify-center space-x-4 mb-4">
                     <a
-                        href="https://www.instagram.com/yourusername"
+                        href="https://www.instagram.com/meijline"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-green-300"

@@ -15,7 +15,7 @@ export default async function AanbodPage() {
                 </div>
             </Container>
             <Container size={"sm"} className="pt-0 space-y-6 ">
-                <div className="md:flex gap-6 items-center">
+                <div className="flex flex-col md:flex-row  gap-6 items-center">
                     <div>
                         <h1 className="text-4xl font-bold mb-6">Over mij</h1>
                         <div className=" space-y-2">
