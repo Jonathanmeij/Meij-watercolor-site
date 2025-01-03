@@ -83,7 +83,6 @@ export default async function PostPage({
                                 <PortableText
                                     components={{
                                         list: {
-                                            // Ex. 1: customizing common list types
                                             bullet: ({ children }) => (
                                                 <ul className="mt-xl">{children}</ul>
                                             ),
