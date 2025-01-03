@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 import Logo from "@/components/Logo";
 
 const links = [
-  { href: "/about", label: "Aanbod" },
+  { href: "/aanbod", label: "Aanbod" },
   { href: "/overmij", label: "Over mij" },
   { href: "/contact", label: "Contact" },
 ];
@@ -18,7 +18,9 @@ export default function Navbar({ className }: { className?: string }) {
         size="sm"
         className="flex py-6 items-center justify-between w-full"
       >
-        <Logo />
+        <Link href="/">
+          <Logo />
+        </Link>
         <div className=" gap-4 font-medium hidden md:flex tracking-wide">
           {links.map((link) => (
             <Link key={link.href} href={link.href}>
@@ -65,16 +67,17 @@ function MobileMenu() {
             </div>
             <div className="flex text-xl  h-min py-8 flex-col gap-1">
               {links.map((link, index) => (
-                <Link
-                  className={
-                    "py-3 px-4 border-b border-neutral-200/70 " +
-                    (index === 0 ? "border-t" : "")
-                  }
-                  key={link.href}
-                  href={link.href}
-                >
-                  {link.label}
-                </Link>
+                <DialogClose key={link.href} asChild>
+                  <Link
+                    className={
+                      "py-3 px-4 border-b border-neutral-200/70 " +
+                      (index === 0 ? "border-t" : "")
+                    }
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                </DialogClose>
               ))}
             </div>
           </div>
