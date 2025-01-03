@@ -3,7 +3,6 @@ import { Container } from "./container";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { DialogClose, DialogTitle } from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
-import Image from "next/image";
 import Logo from "@/components/Logo";
 
 const links = [
