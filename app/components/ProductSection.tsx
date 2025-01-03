@@ -16,7 +16,7 @@ export async function ProductSection() {
     const products = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
     return (
         <Container size="sm" className=" sm:mt-0">
-            <h1 className="text-4xl   font-bold mb-8">Producten</h1>
+            <h1 className="text-4xl   font-bold mb-6">Producten</h1>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {products.map((product) => (
                     <ProductCard key={product.title} document={product} />

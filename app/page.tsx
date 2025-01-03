@@ -52,7 +52,7 @@ function WelcomeSection() {
             size={"sm"}
         >
             <div>
-                <h1 className="text-4xl font-bold mb-8">Hoi ik ben Jaap</h1>
+                <h1 className="text-4xl font-bold mb-4">Hoi ik ben Jaap</h1>
                 <p>
                     Ben je op zoek naar een uniek en persoonlijk cadeau dat écht indruk
                     maakt? Dan ben je hier aan het juiste adres! Ik creëer op maat
