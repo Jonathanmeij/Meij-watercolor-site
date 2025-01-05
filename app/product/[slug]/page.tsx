@@ -8,17 +8,30 @@ import ContactSection from "@/app/components/ContactSection";
 import Link from "next/link";
 import BlurImage from "@/app/components/BlurImage";
 
+const ALL_SLUGS_QUERY = `*[
+    _type == "product" && defined(slug.current)
+  ].slug.current
+  `;
+
+export async function generateStaticParams() {
+    // 1. Fetch all slugs
+    const slugs: string[] = await client.fetch(ALL_SLUGS_QUERY);
+
+    // 2. Map them to the expected param shape
+    return slugs.map((slug) => ({
+        slug,
+    }));
+}
+
 const POST_QUERY = `*[
     _type == "product"
     && defined(slug.current) && slug.current == $slug][0]`;
-
-// const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
     projectId && dataset ? imageUrlBuilder({ projectId, dataset }).image(source) : null;
 
-export const revalidate = 1000;
+export const revalidate = 2000;
 
 export default async function PostPage({
     params,
@@ -56,12 +69,6 @@ export default async function PostPage({
                             </div>
                         </div>
                         {postImageUrl && (
-                            // <ImageDialogTrigger
-                            //     src={postImageUrl}
-                            //     alt={post.title}
-                            //     width={500}
-                            //     height={500}
-                            // />
                             <BlurImage
                                 src={postImageUrl}
                                 width={500}
@@ -73,13 +80,6 @@ export default async function PostPage({
                     </div>
                     <div className="grid grid-cols-1 items-center gap-6  sm:grid-cols-2">
                         {images[0] && (
-                            // <ImageDialogTrigger
-                            //     src={images[0]}
-                            //     alt={post.title}
-                            //     className=" order-last sm:order-first"
-                            //     width={500}
-                            //     height={500}
-                            // />
                             <BlurImage
                                 src={images[0]}
                                 width={500}
@@ -124,13 +124,6 @@ export default async function PostPage({
                                 .map(
                                     (image, index) =>
                                         image && (
-                                            // <ImageDialogTrigger
-                                            //     key={index}
-                                            //     src={image}
-                                            //     alt={post.title}
-                                            //     width={500}
-                                            //     height={500}
-                                            // />
                                             <BlurImage
                                                 key={index}
                                                 src={image}
