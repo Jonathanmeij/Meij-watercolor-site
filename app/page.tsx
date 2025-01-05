@@ -1,10 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
-// const options = { next: { revalidate: 3600 } };
 import { Container } from "./components/container";
 import Navbar from "./components/navbar";
-
 import Image from "next/image";
 import { ProductSection } from "./components/ProductSection";
+import headerPicture from "../public/images/headerPicture.png";
 
 export default async function IndexPage() {
     return (
@@ -34,9 +32,9 @@ function Header() {
                 </p>
             </div>
             <div className="header-mask overflow-hidden">
-                <img
+                <Image
                     alt="Watercolor painting of a bridge"
-                    src={"/images/headerPicture.png"}
+                    src={headerPicture}
                     className="object-cover w-full h-[30rem] scale-150 sm:scale-100"
                 />
                 <div className="absolute top-0 bg-gradient-to-b to-black/50  via-30% via-black/50 from-black/80 h-full w-full"></div>
