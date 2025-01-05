@@ -38,11 +38,11 @@ export default async function PostPage({
 }) {
     const post = await client.fetch<SanityDocument>(POST_QUERY, await params);
     const postImageUrl = post.image
-        ? urlFor(post.image)?.width(650).height(650).url()
+        ? urlFor(post.image)?.width(550).height(550).url()
         : null;
     const images: string[] = post.paginaFotos
         ? post.paginaFotos.map((image: SanityImageSource) => {
-              return urlFor(image)?.width(650).height(650).url();
+              return urlFor(image)?.width(550).height(550).url();
           })
         : [];
 
@@ -69,8 +69,8 @@ export default async function PostPage({
                         {postImageUrl && (
                             <BlurImage
                                 src={postImageUrl}
-                                width={650}
-                                height={650}
+                                width={550}
+                                height={550}
                                 alt={post.title}
                                 className="rounded-xl"
                             />
@@ -80,8 +80,8 @@ export default async function PostPage({
                         {images[0] && (
                             <BlurImage
                                 src={images[0]}
-                                width={650}
-                                height={650}
+                                width={550}
+                                height={550}
                                 alt={post.title}
                                 className="rounded-xl"
                             />
@@ -125,8 +125,8 @@ export default async function PostPage({
                                             <BlurImage
                                                 key={index}
                                                 src={image}
-                                                width={650}
-                                                height={650}
+                                                width={550}
+                                                height={550}
                                                 alt={post.title}
                                                 loading="lazy"
                                                 className="rounded-xl"
