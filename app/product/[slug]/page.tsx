@@ -14,10 +14,8 @@ const ALL_SLUGS_QUERY = `*[
   `;
 
 export async function generateStaticParams() {
-    // 1. Fetch all slugs
     const slugs: string[] = await client.fetch(ALL_SLUGS_QUERY);
 
-    // 2. Map them to the expected param shape
     return slugs.map((slug) => ({
         slug,
     }));
@@ -40,11 +38,11 @@ export default async function PostPage({
 }) {
     const post = await client.fetch<SanityDocument>(POST_QUERY, await params);
     const postImageUrl = post.image
-        ? urlFor(post.image)?.width(550).height(550).url()
+        ? urlFor(post.image)?.width(650).height(650).url()
         : null;
     const images: string[] = post.paginaFotos
         ? post.paginaFotos.map((image: SanityImageSource) => {
-              return urlFor(image)?.width(550).height(550).url();
+              return urlFor(image)?.width(650).height(650).url();
           })
         : [];
 
@@ -71,8 +69,8 @@ export default async function PostPage({
                         {postImageUrl && (
                             <BlurImage
                                 src={postImageUrl}
-                                width={500}
-                                height={500}
+                                width={650}
+                                height={650}
                                 alt={post.title}
                                 className="rounded-xl"
                             />
@@ -82,8 +80,8 @@ export default async function PostPage({
                         {images[0] && (
                             <BlurImage
                                 src={images[0]}
-                                width={500}
-                                height={500}
+                                width={650}
+                                height={650}
                                 alt={post.title}
                                 className="rounded-xl"
                             />
@@ -127,8 +125,8 @@ export default async function PostPage({
                                             <BlurImage
                                                 key={index}
                                                 src={image}
-                                                width={500}
-                                                height={500}
+                                                width={650}
+                                                height={650}
                                                 alt={post.title}
                                                 loading="lazy"
                                                 className="rounded-xl"
