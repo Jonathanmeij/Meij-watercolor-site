@@ -6,7 +6,7 @@ import { Container } from "@/app/components/container";
 import Navbar from "@/app/components/navbar";
 import ContactSection from "@/app/components/ContactSection";
 import Link from "next/link";
-import Image from "next/image";
+import BlurImage from "@/app/components/BlurImage";
 
 const POST_QUERY = `*[
     _type == "product"
@@ -60,7 +60,7 @@ export default async function PostPage({
                             //     width={500}
                             //     height={500}
                             // />
-                            <Image
+                            <BlurImage
                                 src={postImageUrl}
                                 width={500}
                                 height={500}
@@ -78,7 +78,7 @@ export default async function PostPage({
                             //     width={500}
                             //     height={500}
                             // />
-                            <Image
+                            <BlurImage
                                 src={images[0]}
                                 width={500}
                                 height={500}
@@ -129,7 +129,7 @@ export default async function PostPage({
                                             //     width={500}
                                             //     height={500}
                                             // />
-                                            <Image
+                                            <BlurImage
                                                 key={index}
                                                 src={image}
                                                 width={500}
