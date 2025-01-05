@@ -5,8 +5,8 @@ import { client } from "@/sanity/client";
 import { Container } from "@/app/components/container";
 import Navbar from "@/app/components/navbar";
 import ContactSection from "@/app/components/ContactSection";
-import Image from "next/image";
 import Link from "next/link";
+import { ImageDialogTrigger } from "@/app/components/ImageDialog";
 
 const POST_QUERY = `*[
     _type == "product"
@@ -54,23 +54,22 @@ export default async function PostPage({
                             </div>
                         </div>
                         {postImageUrl && (
-                            <Image
+                            <ImageDialogTrigger
                                 src={postImageUrl}
                                 alt={post.title}
-                                className=" rounded-xl"
-                                width="500"
-                                height="500"
+                                width={500}
+                                height={500}
                             />
                         )}
                     </div>
                     <div className="grid grid-cols-1 items-center gap-6  sm:grid-cols-2">
                         {images[0] && (
-                            <Image
+                            <ImageDialogTrigger
                                 src={images[0]}
                                 alt={post.title}
-                                className="rounded-xl order-last sm:order-first"
-                                width="500"
-                                height="500"
+                                className=" order-last sm:order-first"
+                                width={500}
+                                height={500}
                             />
                         )}
 
@@ -109,13 +108,12 @@ export default async function PostPage({
                                 .map(
                                     (image, index) =>
                                         image && (
-                                            <Image
+                                            <ImageDialogTrigger
                                                 key={index}
                                                 src={image}
                                                 alt={post.title}
-                                                className="rounded-xl"
-                                                width="500"
-                                                height="500"
+                                                width={500}
+                                                height={500}
                                             />
                                         )
                                 )}
