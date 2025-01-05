@@ -6,7 +6,7 @@ import { Container } from "@/app/components/container";
 import Navbar from "@/app/components/navbar";
 import ContactSection from "@/app/components/ContactSection";
 import Link from "next/link";
-import { ImageDialogTrigger } from "@/app/components/ImageDialog";
+import Image from "next/image";
 
 const POST_QUERY = `*[
     _type == "product"
@@ -54,22 +54,34 @@ export default async function PostPage({
                             </div>
                         </div>
                         {postImageUrl && (
-                            <ImageDialogTrigger
+                            // <ImageDialogTrigger
+                            //     src={postImageUrl}
+                            //     alt={post.title}
+                            //     width={500}
+                            //     height={500}
+                            // />
+                            <Image
                                 src={postImageUrl}
-                                alt={post.title}
                                 width={500}
                                 height={500}
+                                alt={post.title}
                             />
                         )}
                     </div>
                     <div className="grid grid-cols-1 items-center gap-6  sm:grid-cols-2">
                         {images[0] && (
-                            <ImageDialogTrigger
+                            // <ImageDialogTrigger
+                            //     src={images[0]}
+                            //     alt={post.title}
+                            //     className=" order-last sm:order-first"
+                            //     width={500}
+                            //     height={500}
+                            // />
+                            <Image
                                 src={images[0]}
-                                alt={post.title}
-                                className=" order-last sm:order-first"
                                 width={500}
                                 height={500}
+                                alt={post.title}
                             />
                         )}
 
@@ -108,12 +120,20 @@ export default async function PostPage({
                                 .map(
                                     (image, index) =>
                                         image && (
-                                            <ImageDialogTrigger
+                                            // <ImageDialogTrigger
+                                            //     key={index}
+                                            //     src={image}
+                                            //     alt={post.title}
+                                            //     width={500}
+                                            //     height={500}
+                                            // />
+                                            <Image
                                                 key={index}
                                                 src={image}
-                                                alt={post.title}
                                                 width={500}
                                                 height={500}
+                                                alt={post.title}
+                                                loading="lazy"
                                             />
                                         )
                                 )}
