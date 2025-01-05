@@ -51,7 +51,7 @@ export default async function PostPage({
             <main>
                 <Navbar className="!text-green-950 " />
                 <Container size={"sm"} className="pt-0 space-y-6">
-                    <div className="py-6">
+                    <div className="pt-6 -mb-3">
                         <Link href="/" className="hover:underline">
                             ← Terug naar overzicht
                         </Link>
@@ -59,7 +59,9 @@ export default async function PostPage({
 
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 items-center">
                         <div className="w-full">
-                            <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+                            <h1 className="md:text-4xl text-3xl font-bold mb-4">
+                                {post.title}
+                            </h1>
                             <div className="prose">
                                 {Array.isArray(post.description) && (
                                     <PortableText value={post.description} />
@@ -88,7 +90,7 @@ export default async function PostPage({
                         )}
 
                         <div className="space-y-4">
-                            <h2 className="text-3xl  font-bold">
+                            <h2 className="md:text-4xl text-3xl  font-bold">
                                 {post.title} laten maken?
                             </h2>
 
@@ -115,7 +117,9 @@ export default async function PostPage({
                 <ContactSection />
                 {images.length > 2 && (
                     <Container size={"sm"}>
-                        <h2 className="text-3xl font-bold mb-8">Meer {post.title}</h2>
+                        <h2 className="md:text-4xl text-3xl font-bold mb-8">
+                            Meer {post.title}
+                        </h2>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             {images
                                 .filter((_, i) => i > 1)
