@@ -65,6 +65,7 @@ export default async function PostPage({
                                 width={500}
                                 height={500}
                                 alt={post.title}
+                                className="rounded-xl"
                             />
                         )}
                     </div>
@@ -82,6 +83,7 @@ export default async function PostPage({
                                 width={500}
                                 height={500}
                                 alt={post.title}
+                                className="rounded-xl"
                             />
                         )}
 
@@ -134,6 +136,7 @@ export default async function PostPage({
                                                 height={500}
                                                 alt={post.title}
                                                 loading="lazy"
+                                                className="rounded-xl"
                                             />
                                         )
                                 )}
