@@ -29,7 +29,7 @@ const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
     projectId && dataset ? imageUrlBuilder({ projectId, dataset }).image(source) : null;
 
-export const revalidate = 2000;
+export const revalidate = 99999;
 
 export default async function PostPage({
     params,
