@@ -19,6 +19,8 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${alegreya.className} antialiased`}>
+            <link rel="icon" href="/favicon.ico" sizes="any" />
+
             <body>
                 {children}
                 <Footer />
