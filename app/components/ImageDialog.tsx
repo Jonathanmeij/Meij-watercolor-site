@@ -28,36 +28,34 @@ export default function ImageDialog({
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 }) {
-    const imageUrl = currentImage ? urlFor(currentImage)?.url() : null;
+    const imageUrl = currentImage ? urlFor(currentImage)?.width(1000).url() : null;
     const dimensions = imageUrl ? getImageDimensionsFromUrl(imageUrl) : null;
 
     console.log("imageUrl", imageUrl);
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogContent className="bg-transparent border-none p-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="relative flex items-center justify-center">
-                    <button
-                        onClick={() => setIsOpen(false)}
-                        className="absolute right-4 top-4 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
-                    >
-                        <X className="h-6 w-6 text-white" />
-                    </button>
-                    <VisuallyHidden>
-                        <DialogTitle className="text-center text-2xl font-bold">
-                            Afbeelding
-                        </DialogTitle>
-                    </VisuallyHidden>
-                    {imageUrl && dimensions && (
-                        <Image
-                            src={imageUrl}
-                            alt="image"
-                            width={dimensions.width}
-                            height={dimensions.height}
-                            className="max-h-[90vh] w-auto h-auto"
-                        />
-                    )}
-                </div>
+            <DialogContent className="bg-transparent h-max w-max origin-center border-none p-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <button
+                    onClick={() => setIsOpen(false)}
+                    className="absolute right-4 top-4 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+                >
+                    <X className="h-6 w-6 text-white" />
+                </button>
+                <VisuallyHidden>
+                    <DialogTitle className="text-center text-2xl font-bold">
+                        Afbeelding
+                    </DialogTitle>
+                </VisuallyHidden>
+                {imageUrl && dimensions && (
+                    <Image
+                        src={imageUrl}
+                        alt="image"
+                        width={dimensions.width}
+                        height={dimensions.height}
+                        className="max-w-[95vw] max-h-[95vh] w-auto h-auto"
+                    />
+                )}
             </DialogContent>
         </Dialog>
     );
