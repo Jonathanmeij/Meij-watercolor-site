@@ -7,6 +7,7 @@ import Navbar from "@/app/components/navbar";
 import ContactSection from "@/app/components/ContactSection";
 import Link from "next/link";
 import BlurImage from "@/app/components/BlurImage";
+import Image from "next/image";
 
 const ALL_SLUGS_QUERY = `*[
     _type == "product" && defined(slug.current)
@@ -47,8 +48,28 @@ export default async function PostPage({
         : [];
 
     return (
-        <div className=" min-h-screen bg-amber-50/50">
-            <main>
+        <div className="min-h-screen bg-amber-50/50 relative overflow-hidden">
+            {/* Watercolor splash decorations */}
+            <div className="absolute -top-[50px] sm:top-[120px] left-[96%] sm:left-[5%] w-[300px] h-[300px] rounded-full opacity-10 lg:opacity-20 rotate-45 transform -translate-x-1/2 overflow-hidden">
+                <Image
+                    src="/images/splash.jpg"
+                    alt="Watercolor splash"
+                    fill
+                    className="object-cover"
+                    style={{ filter: "hue-rotate(100deg)" }}
+                />
+            </div>
+            <div className="absolute top-[16%] left-[5%] sm:left-[97%] size-[400px] rounded-full opacity-10 lg:opacity-15 -rotate-90 transform -translate-x-1/2 overflow-hidden">
+                <Image
+                    src="/images/splash.jpg"
+                    alt="Watercolor splash"
+                    fill
+                    className="object-cover"
+                    style={{ filter: "hue-rotate(70deg)" }}
+                />
+            </div>
+
+            <main className="relative z-10">
                 <Navbar className="!text-green-950 " />
                 <Container size={"sm"} className="pt-0 space-y-6">
                     <div className="pt-1 -mb-3">
