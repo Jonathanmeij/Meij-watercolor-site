@@ -53,7 +53,7 @@ export default function ImageDialog({
                         alt="image"
                         width={dimensions.width}
                         height={dimensions.height}
-                        className="max-w-[95vw] max-h-[95vh] w-auto h-auto"
+                        className="max-w-[95vw] max-h-[95vh] w-auto h-auto rounded-lg"
                     />
                 )}
             </DialogContent>
