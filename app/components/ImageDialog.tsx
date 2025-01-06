@@ -1,9 +1,10 @@
 "use client";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+import { cn, urlFor } from "@/lib/utils";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import Image from "next/image";
 import { useState } from "react";
+import { X } from "lucide-react";
 
 export default function ImageDialog({
     currentImage,
@@ -15,12 +16,29 @@ export default function ImageDialog({
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 }) {
+    const imageUrl = currentImage ? urlFor(currentImage)?.width(1000).url() : null;
+
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogContent>
-                <DialogTitle>Image</DialogTitle>
-                <div className="flex items-center justify-center">
-                    <Image src={currentImage} width={500} height={500} alt="image" />
+            <DialogContent className="bg-transparent border-none p-2">
+                <div className="relative">
+                    <button
+                        onClick={() => setIsOpen(false)}
+                        className="absolute right-4 top-4 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+                    >
+                        <X className="h-6 w-6 text-white" />
+                    </button>
+                    <DialogTitle className="text-center text-2xl font-bold">
+                        Afbeelding
+                    </DialogTitle>
+                    {imageUrl && (
+                        <Image
+                            src={imageUrl}
+                            alt="image"
+                            fill
+                            className="object-contain h-min w-min"
+                        />
+                    )}
                 </div>
             </DialogContent>
         </Dialog>
@@ -29,13 +47,25 @@ export default function ImageDialog({
 
 interface ImageProps {
     src: string;
-    width: number;
-    height: number;
+    originalSrc: string;
+    width?: number;
+    height?: number;
     alt: string;
     className?: string;
+    style?: React.CSSProperties;
+    loading?: "eager" | "lazy";
 }
 
-export function ImageDialogTrigger({ src, width, height, alt, className }: ImageProps) {
+export function ImageDialogTrigger({
+    src,
+    width,
+    height,
+    alt,
+    className,
+    style,
+    originalSrc,
+    loading,
+}: ImageProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -47,10 +77,12 @@ export function ImageDialogTrigger({ src, width, height, alt, className }: Image
                     height={height}
                     alt={alt}
                     className={cn("rounded-xl", className)}
+                    style={style}
+                    loading={loading}
                 />
             </button>
             <ImageDialog
-                currentImage={src}
+                currentImage={originalSrc}
                 images={[src]}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}

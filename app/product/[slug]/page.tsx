@@ -1,13 +1,13 @@
 import { PortableText, type SanityDocument } from "next-sanity";
-import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
 import { Container } from "@/app/components/container";
 import Navbar from "@/app/components/navbar";
 import ContactSection from "@/app/components/ContactSection";
 import Link from "next/link";
-import BlurImage from "@/app/components/BlurImage";
 import Image from "next/image";
+import { ImageDialogTrigger } from "@/app/components/ImageDialog";
+import { urlFor } from "@/lib/utils";
 
 const ALL_SLUGS_QUERY = `*[
     _type == "product" && defined(slug.current)
@@ -25,10 +25,6 @@ export async function generateStaticParams() {
 const POST_QUERY = `*[
     _type == "product"
     && defined(slug.current) && slug.current == $slug][0]`;
-
-const { projectId, dataset } = client.config();
-const urlFor = (source: SanityImageSource) =>
-    projectId && dataset ? imageUrlBuilder({ projectId, dataset }).image(source) : null;
 
 export const revalidate = 99999;
 
@@ -54,8 +50,8 @@ export default async function PostPage({
                 <Image
                     src="/images/splash.jpg"
                     alt="Watercolor splash"
-                    fill
                     className="object-cover"
+                    fill
                     style={{ filter: "hue-rotate(100deg)" }}
                 />
             </div>
@@ -90,23 +86,25 @@ export default async function PostPage({
                             </div>
                         </div>
                         {postImageUrl && (
-                            <BlurImage
+                            <ImageDialogTrigger
                                 src={postImageUrl}
                                 width={550}
                                 height={550}
                                 alt={post.title}
                                 className="rounded-xl"
+                                originalSrc={post.image}
                             />
                         )}
                     </div>
                     <div className="grid grid-cols-1 items-center gap-6  sm:grid-cols-2">
                         {images[0] && (
-                            <BlurImage
+                            <ImageDialogTrigger
                                 src={images[0]}
                                 width={550}
                                 height={550}
                                 alt={post.title}
                                 className="rounded-xl"
+                                originalSrc={post.paginaFotos[0]}
                             />
                         )}
 
@@ -147,7 +145,7 @@ export default async function PostPage({
                                 .map(
                                     (image, index) =>
                                         image && (
-                                            <BlurImage
+                                            <ImageDialogTrigger
                                                 key={index}
                                                 src={image}
                                                 width={550}
@@ -155,6 +153,7 @@ export default async function PostPage({
                                                 alt={post.title}
                                                 loading="lazy"
                                                 className="rounded-xl"
+                                                originalSrc={post.paginaFotos[index + 2]}
                                             />
                                         )
                                 )}
