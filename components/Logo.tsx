@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 interface LogoProps {
@@ -9,11 +10,11 @@ interface LogoProps {
 const Logo: React.FC<LogoProps> = ({ className }) => {
     return (
         <svg
-            width="120"
+            // width="120"
             viewBox="0 0 1842 850"
             stroke="currentColor"
             xmlns="http://www.w3.org/2000/svg"
-            className={className}
+            className={cn("w-[80px] md:w-[120px]", className)}
         >
             <path
                 d="M257.5 63L265.5 41L273 63"

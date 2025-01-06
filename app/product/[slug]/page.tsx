@@ -51,7 +51,7 @@ export default async function PostPage({
             <main>
                 <Navbar className="!text-green-950 " />
                 <Container size={"sm"} className="pt-0 space-y-6">
-                    <div className="pt-6 -mb-3">
+                    <div className="pt-1 -mb-3">
                         <Link href="/" className="hover:underline">
                             ← Terug naar overzicht
                         </Link>
