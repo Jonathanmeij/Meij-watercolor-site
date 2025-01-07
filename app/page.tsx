@@ -52,19 +52,19 @@ function WelcomeSection() {
             <div>
                 <h1 className="text-4xl font-bold mb-4">Hoi ik ben Jaap</h1>
                 <p>
-                    Ben je op zoek naar een uniek en persoonlijk cadeau dat écht indruk
-                    maakt? Dan ben je hier aan het juiste adres! Ik creëer op maat
-                    gemaakte tekeningen, zoals prachtige huisportretten of gedetailleerde
-                    illustraties van winkels en bedrijfspanden. Heb je iets anders in
-                    gedachten? Geen probleem! Denk bijvoorbeeld aan een tekening van je
-                    boot, een doop- of belijdenistekst gecombineerd met een illustratie
-                    van je kerk, of een ander bijzonder idee. Wat jouw wens ook is, ik
-                    zorg ervoor dat het speciaal en helemaal op maat wordt gemaakt.
-                    Daarnaast maak ik ook muurtekeningen! Kies een bestaand ontwerp of
-                    laat er een speciaal voor jou ontwerpen. Samen zorgen we voor een
-                    unieke en persoonlijke creatie die helemaal bij jou past. Laat je
-                    inspireren en neem gerust contact op samen maken we jouw cadeau of
-                    kunstwerk onvergetelijk!
+                    Leuk dat je mijn website gevonden hebt! Ben je op zoek naar een uniek
+                    en persoonlijk cadeau dat écht indruk maakt? Dan ben je hier aan het
+                    juiste adres! Ik creëer op maat gemaakte tekeningen, zoals prachtige
+                    huisportretten of gedetailleerde illustraties van winkels en
+                    bedrijfspanden. Heb je iets anders in gedachten? Geen probleem! Denk
+                    bijvoorbeeld aan een tekening van je boot, een doop- of
+                    belijdenistekst gecombineerd met een illustratie van je kerk, of een
+                    ander bijzonder idee. Wat jouw wens ook is, ik zorg ervoor dat het
+                    speciaal en helemaal op maat wordt gemaakt. Daarnaast maak ik ook
+                    muurtekeningen! Kies een bestaand ontwerp of laat er een speciaal voor
+                    jou ontwerpen. Samen zorgen we voor een unieke en persoonlijke creatie
+                    die helemaal bij jou past. Laat je inspireren en neem gerust contact
+                    op samen maken we jouw cadeau of kunstwerk onvergetelijk!
                 </p>
             </div>
             <Image

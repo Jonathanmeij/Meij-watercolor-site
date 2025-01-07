@@ -21,12 +21,10 @@ export default async function AanbodPage() {
                         <div className=" space-y-2">
                             <p>
                                 Hoi, ik ben Jaap van der Meij, 51 jaar, en tekenen is al
-                                mijn hele leven mijn grote passie. Het begon als een
-                                hobby, maar inmiddels heb ik van mijn liefde voor tekenen
-                                mijn werk gemaakt. Samen met een aantal enthousiaste
-                                creatievelingen heb ik Urban Sketchers Leiden opgericht.
-                                Eén keer per maand trekken we de stad in om de prachtige
-                                Leidse straten en gebouwen vast te leggen.
+                                mijn hele leven mijn grote passie. Samen met een aantal
+                                enthousiaste creatievelingen heb ik Urban Sketchers Leiden
+                                opgericht. Eén keer per maand trekken we de stad in om de
+                                prachtige Leidse straten en gebouwen vast te leggen.
                             </p>
                         </div>
                     </div>
