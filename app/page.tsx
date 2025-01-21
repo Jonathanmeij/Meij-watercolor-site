@@ -15,7 +15,7 @@ export default async function IndexPage() {
             </div>
             <ProductSection />
             <div className="bg-green-950 text-white py-16">
-                <Container size="sm">
+                <Container size="xs">
                     <Contact />
                 </Container>
             </div>

@@ -5,7 +5,7 @@ import { client } from "@/sanity/client";
 import { Container } from "./container";
 import Image from "next/image";
 
-const options = { next: { revalidate: 99999 } };
+const options = { next: { revalidate: 30 * 24 * 60 * 60 } };
 
 const POSTS_QUERY = `*[
     _type == "product"
