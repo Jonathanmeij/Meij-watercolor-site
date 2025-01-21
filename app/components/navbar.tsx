@@ -19,7 +19,7 @@ export default function Navbar({ className }: { className?: string }) {
                 size="sm"
                 className="flex py-6 items-center justify-between w-full"
             >
-                <Link href="/">
+                <Link href="/" aria-label="Home">
                     <Logo />
                 </Link>
                 <div className=" gap-4 font-medium hidden md:flex tracking-wide">
