@@ -29,7 +29,7 @@ const formSchema = z.object({
         .string()
         .min(5, "Bericht moet langer zijn dan 5 letters.")
         .max(500, "Bericht moet tussen 5 en 500 letters zijn"),
-    "h-captcha-response": z.string().min(1, "Vul de captcha in"),
+    "h-captcha-response": z.string(),
 });
 
 export function Contact() {
@@ -57,7 +57,7 @@ export function Contact() {
         formData.append("email", values.email);
         formData.append("message", values.message);
 
-        formData.append("access_key", "960aba7b-bc33-4d37-b823-ba9c15503752");
+        formData.append("access_key", "9af4a666-a4cd-4165-a765-d1ee6e4e2220");
 
         const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
@@ -128,23 +128,6 @@ export function Contact() {
                         )}
                     />
 
-                    <FormField
-                        control={form.control}
-                        name="h-captcha-response"
-                        render={() => (
-                            <FormItem>
-                                <FormControl>
-                                    <HCaptcha
-                                        sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
-                                        reCaptchaCompat={false}
-                                        onVerify={onHCaptchaChange}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-
                     {result === "success" && (
                         <p className="text-white bg-green-700 py-2 px-3 rounded-md">
                             Bedankt voor je bericht!
@@ -158,6 +141,11 @@ export function Contact() {
                     )}
                 </div>
 
+                <HCaptcha
+                    sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+                    reCaptchaCompat={false}
+                    onVerify={onHCaptchaChange}
+                />
                 <Button type="submit" disabled={result === "sending"}>
                     {result === "sending" && <Spinner />}
                     {result === "sending" ? "Laden..." : "Verstuur"}

@@ -3,6 +3,8 @@ import Navbar from "./components/navbar";
 import Image from "next/image";
 import { ProductSection } from "./components/ProductSection";
 import headerPicture from "../public/images/headerPicture.png";
+import Link from "next/link";
+import { Contact } from "./components/Contact";
 
 export default async function IndexPage() {
     return (
@@ -12,6 +14,9 @@ export default async function IndexPage() {
                 <WelcomeSection />
             </div>
             <ProductSection />
+            <Container size="sm" className="py-10 bg-green-950 text-white">
+                <Contact />
+            </Container>
         </div>
     );
 }
@@ -24,18 +29,15 @@ function Header() {
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 space-y-2 -translate-y-1/2
  z-10"
             >
-                <h1 className="text-4xl font-bold text-white max-w-md text-center ">
-                    Huisportretten en uitgeprinte tekeningen
+                <h1 className="text-4xl font-bold text-white max-w-lg text-center  ">
+                    Op maat gemaakte tekeningen en muurschilderingen
                 </h1>
-                <p className="text-white text-center text-lg">
-                    Waterverf en digitale illustraties door Jaap
-                </p>
             </div>
             <div className="header-mask overflow-hidden">
                 <Image
                     alt="Watercolor painting of a bridge"
                     src={headerPicture}
-                    className="object-cover w-full h-[30rem] scale-150 sm:scale-100"
+                    className="object-cover w-full h-[25rem] scale-150 sm:scale-100"
                 />
                 <div className="absolute top-0 bg-gradient-to-b to-black/50  via-30% via-black/50 from-black/80 h-full w-full"></div>
             </div>
@@ -66,6 +68,12 @@ function WelcomeSection() {
                     die helemaal bij jou past. Laat je inspireren en neem gerust contact
                     op samen maken we jouw cadeau of kunstwerk onvergetelijk!
                 </p>
+                <Link
+                    className="bg-green-950 text-white px-4 rounded-lg py-2 mt-4 inline-block"
+                    href="/contact"
+                >
+                    Contact opnemen
+                </Link>
             </div>
             <Image
                 src={"/images/Profiel.png"}

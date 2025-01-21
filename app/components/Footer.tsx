@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="bg-green-950 text-white py-20">
+        <footer className="bg-green-950  text-white py-20">
             <div className="container mx-auto px-4">
                 <nav className="mb-6">
                     <ul className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -18,7 +18,7 @@ export default function Footer() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/over-mij" className="hover:underline">
+                            <Link href="/overmij" className="hover:underline">
                                 Over mij
                             </Link>
                         </li>
@@ -47,6 +47,7 @@ export default function Footer() {
                         <span className="sr-only">Email</span>
                     </a>
                 </div>
+                <p className="text-center mb-4">KVK: 96193395</p>
                 <div className="text-center text-sm">
                     &copy; 2025 Meijline. All rights reserved.
                 </div>

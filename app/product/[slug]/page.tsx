@@ -45,7 +45,6 @@ export default async function PostPage({
 
     return (
         <div className="min-h-screen bg-amber-50/50 relative overflow-hidden">
-            {/* Watercolor splash decorations */}
             <div className="absolute -top-[50px] sm:top-[120px] left-[96%] sm:left-[5%] w-[300px] h-[300px] rounded-full opacity-10 lg:opacity-20 rotate-45 transform -translate-x-1/2 overflow-hidden">
                 <Image
                     src="/images/splash.jpg"
