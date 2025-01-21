@@ -14,9 +14,11 @@ export default async function IndexPage() {
                 <WelcomeSection />
             </div>
             <ProductSection />
-            <Container size="sm" className="py-10 bg-green-950 text-white">
-                <Contact />
-            </Container>
+            <div className="bg-green-950 text-white py-16">
+                <Container size="sm">
+                    <Contact />
+                </Container>
+            </div>
         </div>
     );
 }
