@@ -39,10 +39,7 @@ export default function Footer() {
                         <Instagram size={24} />
                         <span className="sr-only">Instagram</span>
                     </a>
-                    <a
-                        href="mailto:your.email@example.com"
-                        className="hover:text-green-300"
-                    >
+                    <a href="mailto:contact@meijline.nl" className="hover:text-green-300">
                         <Mail size={24} />
                         <span className="sr-only">Email</span>
                     </a>
