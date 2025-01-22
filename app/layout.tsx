@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Alegreya } from "next/font/google";
 import Footer from "./components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 
 const alegreya = Alegreya({
     subsets: ["latin"],
@@ -20,7 +21,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${alegreya.className} antialiased`}>
             <link rel="icon" href="/favicon.ico" sizes="any" />
-
+            <Analytics />
             <body>
                 {children}
                 <Footer />
