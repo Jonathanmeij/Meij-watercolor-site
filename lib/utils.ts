@@ -3,7 +3,6 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import imageUrlBuilder from "@sanity/image-url";
-import type { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -63,21 +62,20 @@ export function getSafeImageUrl(
 
     // Try to generate the URL with transformations
     try {
-        const builder = urlFor(source);
+        let builder = urlFor(source);
         if (!builder) {
             return options?.fallbackUrl || null;
         }
 
-        // Apply width and height if specified
-        let finalBuilder: ImageUrlBuilder = builder;
+        // Apply width and height if specified (chaining)
         if (options?.width) {
-            finalBuilder = finalBuilder.width(options.width);
+            builder = builder.width(options.width);
         }
         if (options?.height) {
-            finalBuilder = finalBuilder.height(options.height);
+            builder = builder.height(options.height);
         }
 
-        const url = finalBuilder.url();
+        const url = builder.url();
         
         // Validate that we got a proper URL string
         if (typeof url === "string" && url.length > 0) {

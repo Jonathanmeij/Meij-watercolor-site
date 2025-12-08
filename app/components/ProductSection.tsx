@@ -27,13 +27,12 @@ export async function ProductSection() {
 
 function ProductCard({ document }: { document: SanityDocument }) {
     // Safely generate image URL with fallback to placeholder
-    const postImageUrl = document.image
-        ? getSafeImageUrl(document.image, {
-              width: 550,
-              height: 310,
-              fallbackUrl: "/images/placeholder.svg",
-          })
-        : "/images/placeholder.svg";
+    const postImageUrl =
+        getSafeImageUrl(document.image, {
+            width: 550,
+            height: 310,
+            fallbackUrl: "/images/placeholder.svg",
+        }) || "/images/placeholder.svg";
 
     return (
         <a
