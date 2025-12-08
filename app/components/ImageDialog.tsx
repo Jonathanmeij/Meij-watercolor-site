@@ -25,7 +25,6 @@ export default function ImageDialog({
     setIsOpen,
 }: {
     currentImage: SanityImageSource;
-    images: string[];
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 }) {
@@ -101,7 +100,6 @@ export function ImageDialogTrigger({
             </button>
             <ImageDialog
                 currentImage={originalSrc}
-                images={[src]}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
             />
