@@ -26,7 +26,7 @@ const POST_QUERY = `*[
     _type == "product"
     && defined(slug.current) && slug.current == $slug][0]`;
 
-export const revalidate = 99999999;
+export const revalidate = 3600;
 
 export default async function PostPage({
     params,
