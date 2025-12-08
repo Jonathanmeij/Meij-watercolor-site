@@ -1,11 +1,10 @@
 import { SanityDocument } from "next-sanity";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/sanity/client";
 import { Container } from "./container";
 import Image from "next/image";
+import { getImageUrl } from "@/lib/utils";
 
-const options = { next: { revalidate: 30 * 24 * 60 * 60 } };
+const options = { next: { revalidate: 3600 } }; // 1 hour
 
 const POSTS_QUERY = `*[
     _type == "product"
@@ -26,14 +25,10 @@ export async function ProductSection() {
     );
 }
 
-const { projectId, dataset } = client.config();
-const urlFor = (source: SanityImageSource) =>
-    projectId && dataset ? imageUrlBuilder({ projectId, dataset }).image(source) : null;
-
 function ProductCard({ document }: { document: SanityDocument }) {
     const postImageUrl = document.image
-        ? urlFor(document.image)?.width(550).height(310).url()
-        : "/images/placeholder.svg";
+        ? getImageUrl(document.image, 550, 310)
+        : null;
 
     return (
         <a
