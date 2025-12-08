@@ -7,7 +7,7 @@ import ContactSection from "@/app/components/ContactSection";
 import Link from "next/link";
 import Image from "next/image";
 import { ImageDialogTrigger } from "@/app/components/ImageDialog";
-import { urlFor, getSafeImageUrl } from "@/lib/utils";
+import { getSafeImageUrl } from "@/lib/utils";
 
 const ALL_SLUGS_QUERY = `*[
     _type == "product" && defined(slug.current)
@@ -37,20 +37,21 @@ export default async function PostPage({
     
     // Safely generate image URL with validation
     const postImageUrl = post.image
-        ? getSafeImageUrl(
-              urlFor(post.image)?.width(550).height(550) as SanityImageSource,
-              "/images/placeholder.svg"
-          )
+        ? getSafeImageUrl(post.image, {
+              width: 550,
+              height: 550,
+              fallbackUrl: "/images/placeholder.svg",
+          })
         : null;
     
     // Safely map and filter images, excluding any that fail validation
     const images: string[] = post.paginaFotos
         ? post.paginaFotos
               .map((image: SanityImageSource) => {
-                  return getSafeImageUrl(
-                      urlFor(image)?.width(550).height(550) as SanityImageSource,
-                      null
-                  );
+                  return getSafeImageUrl(image, {
+                      width: 550,
+                      height: 550,
+                  });
               })
               .filter((url: string | null): url is string => url !== null)
         : [];

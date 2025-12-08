@@ -1,6 +1,4 @@
 import { SanityDocument } from "next-sanity";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/sanity/client";
 import { Container } from "./container";
 import Image from "next/image";
@@ -27,17 +25,14 @@ export async function ProductSection() {
     );
 }
 
-const { projectId, dataset } = client.config();
-const urlFor = (source: SanityImageSource) =>
-    projectId && dataset ? imageUrlBuilder({ projectId, dataset }).image(source) : null;
-
 function ProductCard({ document }: { document: SanityDocument }) {
     // Safely generate image URL with fallback to placeholder
     const postImageUrl = document.image
-        ? getSafeImageUrl(
-              urlFor(document.image)?.width(550).height(310) as SanityImageSource,
-              "/images/placeholder.svg"
-          )
+        ? getSafeImageUrl(document.image, {
+              width: 550,
+              height: 310,
+              fallbackUrl: "/images/placeholder.svg",
+          })
         : "/images/placeholder.svg";
 
     return (

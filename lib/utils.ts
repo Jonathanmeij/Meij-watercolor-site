@@ -3,6 +3,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import imageUrlBuilder from "@sanity/image-url";
+import type { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -14,39 +15,55 @@ export const urlFor = (source: SanityImageSource) =>
 
 /**
  * Validates and safely generates an image URL from a Sanity image source.
- * Returns the URL string if valid, or null if the source is invalid.
+ * Returns the URL string if valid, or the fallback URL if the source is invalid.
  * 
  * @param source - The Sanity image source to validate and convert
- * @param fallbackUrl - Optional fallback URL to use if validation fails
+ * @param options - Optional configuration object
+ * @param options.width - Optional width for the image
+ * @param options.height - Optional height for the image
+ * @param options.fallbackUrl - Optional fallback URL to use if validation fails
  * @returns The validated image URL or fallback URL, or null if both fail
  */
 export function getSafeImageUrl(
     source: SanityImageSource | null | undefined,
-    fallbackUrl?: string
+    options?: {
+        width?: number;
+        height?: number;
+        fallbackUrl?: string;
+    }
 ): string | null {
     // Check if source exists and is valid
     if (!source) {
-        return fallbackUrl || null;
+        return options?.fallbackUrl || null;
     }
 
     // Try to generate the URL
     try {
         const builder = urlFor(source);
         if (!builder) {
-            return fallbackUrl || null;
+            return options?.fallbackUrl || null;
         }
 
-        const url = builder.url();
+        // Apply width and height if specified
+        let finalBuilder: ImageUrlBuilder = builder;
+        if (options?.width) {
+            finalBuilder = finalBuilder.width(options.width);
+        }
+        if (options?.height) {
+            finalBuilder = finalBuilder.height(options.height);
+        }
+
+        const url = finalBuilder.url();
         
         // Validate that we got a proper URL string
         if (typeof url === "string" && url.length > 0) {
             return url;
         }
 
-        return fallbackUrl || null;
+        return options?.fallbackUrl || null;
     } catch (error) {
         console.error("Error generating image URL:", error);
-        return fallbackUrl || null;
+        return options?.fallbackUrl || null;
     }
 }
 
