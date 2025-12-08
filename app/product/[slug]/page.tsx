@@ -7,7 +7,7 @@ import ContactSection from "@/app/components/ContactSection";
 import Link from "next/link";
 import Image from "next/image";
 import { ImageDialogTrigger } from "@/app/components/ImageDialog";
-import { urlFor } from "@/lib/utils";
+import { getImageUrl } from "@/lib/utils";
 
 const ALL_SLUGS_QUERY = `*[
     _type == "product" && defined(slug.current)
@@ -26,7 +26,7 @@ const POST_QUERY = `*[
     _type == "product"
     && defined(slug.current) && slug.current == $slug][0]`;
 
-export const revalidate = 99999999;
+export const revalidate = 3600; // 1 hour
 
 export default async function PostPage({
     params,
@@ -35,12 +35,17 @@ export default async function PostPage({
 }) {
     const post = await client.fetch<SanityDocument>(POST_QUERY, await params);
     const postImageUrl = post.image
-        ? urlFor(post.image)?.width(550).height(550).url()
+        ? getImageUrl(post.image, 550, 550)
         : null;
-    const images: string[] = post.paginaFotos
-        ? post.paginaFotos.map((image: SanityImageSource) => {
-              return urlFor(image)?.width(550).height(550).url();
-          })
+    
+    // Create array of valid images with their original sources
+    const validImages: Array<{ url: string; source: SanityImageSource }> = post.paginaFotos
+        ? post.paginaFotos
+              .map((image: SanityImageSource) => ({
+                  url: getImageUrl(image, 550, 550),
+                  source: image
+              }))
+              .filter((item: { url: string | null; source: SanityImageSource }) => item.url !== null)
         : [];
 
     return (
@@ -96,14 +101,14 @@ export default async function PostPage({
                         )}
                     </div>
                     <div className="grid grid-cols-1 items-center gap-6  sm:grid-cols-2">
-                        {images[0] && (
+                        {validImages[0] && (
                             <ImageDialogTrigger
-                                src={images[0]}
+                                src={validImages[0].url}
                                 width={550}
                                 height={550}
                                 alt={post.title}
                                 className="rounded-xl"
-                                originalSrc={post.paginaFotos[0]}
+                                originalSrc={validImages[0].source}
                             />
                         )}
 
@@ -133,28 +138,27 @@ export default async function PostPage({
                     </div>
                 </Container>
                 <ContactSection />
-                {images.length > 2 && (
+                {validImages.length > 2 && (
                     <Container size={"sm"}>
                         <h2 className="md:text-4xl text-3xl font-bold mb-8">
                             Meer {post.title}
                         </h2>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            {images
-                                .filter((_, i) => i > 1)
+                            {validImages
+                                .slice(2)
                                 .map(
-                                    (image, index) =>
-                                        image && (
-                                            <ImageDialogTrigger
-                                                key={index}
-                                                src={image}
-                                                width={550}
-                                                height={550}
-                                                alt={post.title}
-                                                loading="lazy"
-                                                className="rounded-xl"
-                                                originalSrc={post.paginaFotos[index + 2]}
-                                            />
-                                        )
+                                    (imageItem, index) => (
+                                        <ImageDialogTrigger
+                                            key={index}
+                                            src={imageItem.url}
+                                            width={550}
+                                            height={550}
+                                            alt={post.title}
+                                            loading="lazy"
+                                            className="rounded-xl"
+                                            originalSrc={imageItem.source}
+                                        />
+                                    )
                                 )}
                         </div>
                     </Container>

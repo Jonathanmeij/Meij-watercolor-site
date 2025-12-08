@@ -1,6 +1,7 @@
 "use client";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { cn, urlFor } from "@/lib/utils";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Image from "next/image";
@@ -23,7 +24,7 @@ export default function ImageDialog({
     isOpen,
     setIsOpen,
 }: {
-    currentImage: string;
+    currentImage: SanityImageSource;
     images: string[];
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
@@ -63,7 +64,7 @@ export default function ImageDialog({
 
 interface ImageProps {
     src: string;
-    originalSrc: string;
+    originalSrc: SanityImageSource;
     width?: number;
     height?: number;
     alt: string;
