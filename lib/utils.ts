@@ -14,6 +14,30 @@ export const urlFor = (source: SanityImageSource) =>
     projectId && dataset ? imageUrlBuilder({ projectId, dataset }).image(source) : null;
 
 /**
+ * Validates if a Sanity image source is valid and can generate a URL.
+ * 
+ * @param source - The Sanity image source to validate
+ * @returns true if the source is valid and can generate a URL, false otherwise
+ */
+export function isValidImageSource(source: SanityImageSource | null | undefined): boolean {
+    if (!source) {
+        return false;
+    }
+
+    try {
+        const builder = urlFor(source);
+        if (!builder) {
+            return false;
+        }
+
+        const url = builder.url();
+        return typeof url === "string" && url.length > 0;
+    } catch {
+        return false;
+    }
+}
+
+/**
  * Validates and safely generates an image URL from a Sanity image source.
  * Returns the URL string if valid, or the fallback URL if the source is invalid.
  * 
@@ -33,11 +57,11 @@ export function getSafeImageUrl(
     }
 ): string | null {
     // Check if source exists and is valid
-    if (!source) {
+    if (!isValidImageSource(source)) {
         return options?.fallbackUrl || null;
     }
 
-    // Try to generate the URL
+    // Try to generate the URL with transformations
     try {
         const builder = urlFor(source);
         if (!builder) {
@@ -64,29 +88,5 @@ export function getSafeImageUrl(
     } catch (error) {
         console.error("Error generating image URL:", error);
         return options?.fallbackUrl || null;
-    }
-}
-
-/**
- * Validates if a Sanity image source is valid and can generate a URL.
- * 
- * @param source - The Sanity image source to validate
- * @returns true if the source is valid and can generate a URL, false otherwise
- */
-export function isValidImageSource(source: SanityImageSource | null | undefined): boolean {
-    if (!source) {
-        return false;
-    }
-
-    try {
-        const builder = urlFor(source);
-        if (!builder) {
-            return false;
-        }
-
-        const url = builder.url();
-        return typeof url === "string" && url.length > 0;
-    } catch {
-        return false;
     }
 }
