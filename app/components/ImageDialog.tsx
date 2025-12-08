@@ -35,8 +35,6 @@ export default function ImageDialog({
         : null;
     const dimensions = imageUrl ? getImageDimensionsFromUrl(imageUrl) : null;
 
-    console.log("imageUrl", imageUrl);
-
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogContent className="bg-transparent h-max w-max origin-center border-none p-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
