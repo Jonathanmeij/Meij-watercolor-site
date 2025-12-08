@@ -109,7 +109,7 @@ export default async function PostPage({
                         )}
                     </div>
                     <div className="grid grid-cols-1 items-center gap-6  sm:grid-cols-2">
-                        {images[0] && (
+                        {images[0] && post.paginaFotos?.[0] && (
                             <ImageDialogTrigger
                                 src={images[0]}
                                 width={550}
@@ -156,7 +156,7 @@ export default async function PostPage({
                                 .filter((_, i) => i > 1)
                                 .map(
                                     (image, index) =>
-                                        image && (
+                                        image && post.paginaFotos?.[index + 2] && (
                                             <ImageDialogTrigger
                                                 key={index}
                                                 src={image}

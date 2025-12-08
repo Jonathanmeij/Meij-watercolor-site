@@ -41,7 +41,7 @@ function ProductCard({ document }: { document: SanityDocument }) {
             className="bg-white shadow-lg rounded-lg p-4 group hover:shadow-xl transition-all"
         >
             <Image
-                src={postImageUrl || "/images/placeholder.svg"}
+                src={postImageUrl}
                 alt={document.title}
                 width={550}
                 height={500}
