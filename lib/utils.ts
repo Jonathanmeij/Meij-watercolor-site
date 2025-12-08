@@ -56,8 +56,8 @@ export function getSafeImageUrl(
         fallbackUrl?: string;
     }
 ): string | null {
-    // Check if source exists and is valid
-    if (!isValidImageSource(source)) {
+    // Check if source exists
+    if (!source) {
         return options?.fallbackUrl || null;
     }
 
