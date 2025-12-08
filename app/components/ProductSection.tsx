@@ -4,6 +4,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/sanity/client";
 import { Container } from "./container";
 import Image from "next/image";
+import { getSafeImageUrl } from "@/lib/utils";
 
 const options = { next: { revalidate: 30 * 24 * 60 * 60 } };
 
@@ -31,8 +32,12 @@ const urlFor = (source: SanityImageSource) =>
     projectId && dataset ? imageUrlBuilder({ projectId, dataset }).image(source) : null;
 
 function ProductCard({ document }: { document: SanityDocument }) {
+    // Safely generate image URL with fallback to placeholder
     const postImageUrl = document.image
-        ? urlFor(document.image)?.width(550).height(310).url()
+        ? getSafeImageUrl(
+              urlFor(document.image)?.width(550).height(310) as SanityImageSource,
+              "/images/placeholder.svg"
+          )
         : "/images/placeholder.svg";
 
     return (

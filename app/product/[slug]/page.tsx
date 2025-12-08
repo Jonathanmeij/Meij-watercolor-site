@@ -7,7 +7,7 @@ import ContactSection from "@/app/components/ContactSection";
 import Link from "next/link";
 import Image from "next/image";
 import { ImageDialogTrigger } from "@/app/components/ImageDialog";
-import { urlFor } from "@/lib/utils";
+import { urlFor, getSafeImageUrl } from "@/lib/utils";
 
 const ALL_SLUGS_QUERY = `*[
     _type == "product" && defined(slug.current)
@@ -34,13 +34,25 @@ export default async function PostPage({
     params: Promise<{ slug: string }>;
 }) {
     const post = await client.fetch<SanityDocument>(POST_QUERY, await params);
+    
+    // Safely generate image URL with validation
     const postImageUrl = post.image
-        ? urlFor(post.image)?.width(550).height(550).url()
+        ? getSafeImageUrl(
+              urlFor(post.image)?.width(550).height(550) as SanityImageSource,
+              "/images/placeholder.svg"
+          )
         : null;
+    
+    // Safely map and filter images, excluding any that fail validation
     const images: string[] = post.paginaFotos
-        ? post.paginaFotos.map((image: SanityImageSource) => {
-              return urlFor(image)?.width(550).height(550).url();
-          })
+        ? post.paginaFotos
+              .map((image: SanityImageSource) => {
+                  return getSafeImageUrl(
+                      urlFor(image)?.width(550).height(550) as SanityImageSource,
+                      null
+                  );
+              })
+              .filter((url: string | null): url is string => url !== null)
         : [];
 
     return (

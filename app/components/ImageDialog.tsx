@@ -1,8 +1,9 @@
 "use client";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { cn, urlFor } from "@/lib/utils";
+import { cn, urlFor, getSafeImageUrl } from "@/lib/utils";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
 import { useState } from "react";
 import { X } from "lucide-react";
@@ -28,7 +29,13 @@ export default function ImageDialog({
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 }) {
-    const imageUrl = currentImage ? urlFor(currentImage)?.width(1000).url() : null;
+    // Safely generate image URL with validation
+    const imageUrl = currentImage
+        ? getSafeImageUrl(
+              urlFor(currentImage)?.width(1000) as SanityImageSource,
+              null
+          )
+        : null;
     const dimensions = imageUrl ? getImageDimensionsFromUrl(imageUrl) : null;
 
     console.log("imageUrl", imageUrl);
