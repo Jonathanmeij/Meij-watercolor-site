@@ -19,8 +19,7 @@ export const getImageUrl = (source: SanityImageSource, width?: number, height?: 
     }
     
     // Check if source has the required asset property
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const sourceObj = source as any;
+    const sourceObj = source as { asset?: unknown; _ref?: unknown };
     if (!sourceObj.asset && !sourceObj._ref) {
         return null;
     }
