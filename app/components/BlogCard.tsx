@@ -1,5 +1,4 @@
 import { SanityDocument } from "next-sanity";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,10 +14,10 @@ export function BlogCard({ document }: BlogCardProps) {
 
     const publishedDate = document.publishedAt
         ? new Date(document.publishedAt).toLocaleDateString("nl-NL", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-          })
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        })
         : null;
 
     return (
