@@ -2,6 +2,7 @@ import { Container } from "./components/container";
 import Navbar from "./components/navbar";
 import Image from "next/image";
 import { ProductSection } from "./components/ProductSection";
+import { RecentBlogSection } from "./components/RecentBlogSection";
 import headerPicture from "../public/images/headerPicture.png";
 import Link from "next/link";
 import { Contact } from "./components/Contact";
@@ -14,6 +15,7 @@ export default async function IndexPage() {
                 <WelcomeSection />
             </div>
             <ProductSection />
+            <RecentBlogSection />
             <div className="bg-green-950 text-white py-16">
                 <Container size="xs">
                     <Contact />

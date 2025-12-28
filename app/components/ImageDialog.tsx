@@ -5,8 +5,9 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import Spinner from "./Spinner";
 
 function getImageDimensionsFromUrl(url: string) {
     const match = url.match(/-(\d+)x(\d+)\./);
@@ -29,33 +30,67 @@ export default function ImageDialog({
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 }) {
+    const [isLoading, setIsLoading] = useState(true);
+    const [imageError, setImageError] = useState(false);
     const imageUrl = currentImage ? urlFor(currentImage)?.width(1000).url() : null;
     const dimensions = imageUrl ? getImageDimensionsFromUrl(imageUrl) : null;
 
-    console.log("imageUrl", imageUrl);
+    // Reset loading state when image changes
+    useEffect(() => {
+        if (isOpen && imageUrl) {
+            setIsLoading(true);
+            setImageError(false);
+        }
+    }, [isOpen, imageUrl]);
+
+    const handleImageLoad = () => {
+        setIsLoading(false);
+    };
+
+    const handleImageError = () => {
+        setIsLoading(false);
+        setImageError(true);
+    };
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogContent className="bg-transparent h-max w-max origin-center border-none p-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <DialogContent className="bg-transparent border-none p-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-[95vw] max-h-[95vh] w-max h-max flex items-center justify-center">
                 <button
                     onClick={() => setIsOpen(false)}
-                    className="absolute right-4 top-4 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+                    className="absolute right-2 top-2 z-50 p-2 rounded-full bg-black/70 hover:bg-black/90 transition-colors backdrop-blur-sm shadow-lg"
+                    aria-label="Close dialog"
                 >
-                    <X className="h-6 w-6 text-white" />
+                    <X className="h-5 w-5 text-white" />
                 </button>
                 <VisuallyHidden>
                     <DialogTitle className="text-center text-2xl font-bold">
                         Afbeelding
                     </DialogTitle>
                 </VisuallyHidden>
+                {isLoading && (
+                    <div className="flex items-center justify-center min-w-[200px] min-h-[200px]">
+                        <Spinner />
+                    </div>
+                )}
                 {imageUrl && dimensions && (
                     <Image
                         src={imageUrl}
                         alt="image"
                         width={dimensions.width}
                         height={dimensions.height}
-                        className="max-w-[95vw] max-h-[95vh] w-auto h-auto rounded-lg"
+                        className={cn(
+                            "max-w-[95vw] max-h-[95vh] w-auto h-auto rounded-lg transition-all duration-500 ease-out origin-center",
+                            isLoading ? "opacity-0 scale-95 absolute" : "opacity-100 scale-100",
+                            imageError && "hidden"
+                        )}
+                        onLoad={handleImageLoad}
+                        onError={handleImageError}
                     />
+                )}
+                {imageError && (
+                    <div className="flex items-center justify-center min-w-[200px] min-h-[200px] text-white bg-black/50 rounded-lg p-4">
+                        <p>Failed to load image</p>
+                    </div>
                 )}
             </DialogContent>
         </Dialog>
@@ -86,8 +121,8 @@ export function ImageDialogTrigger({
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div>
-            <button onClick={() => setIsOpen(true)}>
+        <div className="w-full">
+            <button onClick={() => setIsOpen(true)} className="w-full">
                 <Image
                     src={src}
                     width={width}
